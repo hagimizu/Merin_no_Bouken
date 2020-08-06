@@ -1,0 +1,80 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>Omiya</title>
+        <!-- Optinal CSS first, then Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        <link rel = "Stylesheet" href = "main.css">
+    </head>
+    
+    <body class = "background omiya_poisoned_body">
+        <div id = "container">
+            <img src = "../images/objects/merin_with_shield.png" id = "hero">
+            <img src = "../images/objects/virus.png" id = "enemy">
+            
+            <img src = "../images/objects/ring.png" id = "ring">
+            <img src = "../images/objects/ring1.png" id = "ring1">
+            <img src = "../images/objects/ring2.png" id = "ring2">
+            <img src = "../images/objects/ring3.png" id = "ring3">
+            <img src = "../images/objects/ring4.png" id = "ring4">
+
+            <div id = "menu">
+                <p>
+                    The ring suddenly shone!<br>
+                    You feel getting immune to the Virus.
+                <p class = "text-right pr-1"><a href = "omiya2_2.html">Next</a></p>
+                </p>
+            </div>
+        </div>
+        
+        <!-- Optional JavaScript -->
+        <script>
+            var ring = document.getElementById("ring");
+            var shining_ring1 = document.getElementById("ring1");
+            var shining_ring2 = document.getElementById("ring2");
+            var shining_ring3 = document.getElementById("ring3");
+            var shining_ring4 = document.getElementById("ring4");
+            shining_ring1.style.display = "none";
+            shining_ring2.style.display = "none";
+            shining_ring3.style.display = "none";
+            shining_ring4.style.display = "none";
+            
+            function show_shining_ring1(){
+                shining_ring1.style.display = "";
+            }
+            function show_shining_ring2(){
+                shining_ring2.style.display = "";
+            }           
+            function show_shining_ring3(){
+                shining_ring3.style.display = "";
+            }            
+            function show_shining_ring4(){
+                shining_ring4.style.display = "";
+            }
+            function reset_shine1(){
+                shining_ring3.style.display = "none";
+                shining_ring4.style.display = "none";
+            }
+            function reset_shine2(){
+                shining_ring1.style.display = "none";
+                shining_ring2.style.display = "none";
+            }
+            function shining_ring(){
+                setTimeout(show_shining_ring1, 250);
+                setTimeout(show_shining_ring2, 500);
+                setTimeout(show_shining_ring3, 750);
+                setTimeout(show_shining_ring4, 1000);
+                setTimeout(reset_shine1, 2000);
+                setTimeout(reset_shine2, 2200);
+            }         
+            
+            shining_ring();
+        </script>
+        <!-- jQuery first, then Popper.js, then Bootstrap JS, then Font Awesome -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
+    </body>
+</html>

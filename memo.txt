@@ -1,0 +1,34 @@
+index
+
+tutorial
+tutorial1
+tutorial3 battle
+tutorial4 get the sword
+tutorial5 Departure
+
+kita_urawa Arrival
+kita_urawa2 Encounter
+kita_urawa3 Battle
+
+yono1 Arrival
+yono2 Encounter
+yono33 Battle
+
+omiya Arrival
+omiya2 Encounter
+omiya3 Battle
+
+↓
+
+Ending
+
+moving menu to above and chara to below 
+add the reasons to see them
+sword needs attack
+
+leanderhughes@gmail.com
+
+ran
+lost
+true
+last_lost

@@ -1,0 +1,275 @@
+<!DOCTYPE>
+<html onclick = "play_song()">
+    <head>
+        <meta charset = "UTF-8">
+        <title>Kitaurawa</title>
+        
+        <!-- Optinal CSS first, then Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        <link rel = "Stylesheet" href = "main.css">
+    </head>
+    
+    <body class = "background kita_urawa_body">
+      <div id = "container">
+        <img src = "../images/objects/merin_with_sword.png" id = "hero">
+        <img src = "../images/objects/merin_dead.png" id = "hero_dead">
+        <img src = "../images/objects/nu.png" id = "enemy">
+        <img src = "../images/objects/nu_dead.png" id = "enemy_dead">
+        <img src = "../images/objects/hit.png" id = "hit">
+        <img src = "../images/objects/slash.png" id = "slash">
+        
+        <div id = "hero_hp_box">
+            <div id = "hero_hp">???/???</div>
+        </div>
+        <div id = "enemy_hp_box">
+            <div id = "enemy_hp">???/???</div>
+        </div>
+        
+        <div id = "message"></div>
+
+        <div id = "menu">
+  
+            <p>
+                What will you do?
+            </p>
+                <ul>
+                    <li onclick = "fight()">Fight</li>
+                    <li onclick = "run()">Run</li>
+                </ul>
+        </div>
+      </div>
+        
+        <!-- Optional JavaScript -->
+        <script>
+          var fighting = false;
+
+          var hero_hp_max = 50;
+          var hero_hp = hero_hp_max;
+          var hero_hp_div = document.getElementById("hero_hp")
+    
+          var enemy_hp_max = 100;
+          var enemy_hp = enemy_hp_max;
+          var enemy_hp_div = document.getElementById("enemy_hp")
+          
+          var hero_img = document.getElementById("hero");
+          var enemy_img = document.getElementById("enemy");
+          
+          var hero_dead_img = document.getElementById("hero_dead");
+          hero_dead_img.style.display = "none";
+          var enemy_dead_img = document.getElementById("enemy_dead");          
+          enemy_dead_img.style.display = "none";
+
+          var slash_img = document.getElementById("slash");
+          slash_img.style.display = "none";
+          var hit_img = document.getElementById("hit");
+          hit_img.style.display = "none";
+
+          var message_div = document.getElementById("message");
+          var menu_div = document.getElementById("menu");   
+          message_div.style.display = "none";
+
+          var song = new Audio("../sounds/battle.mp3");
+          song.volume = .5;
+          var song_started = false;
+          
+          var hero_attack_sound = new Audio("../sounds/heroAttack.mp3");
+          var enemy_attack_sound = new Audio("../sounds/enemyAttack.mp3");
+          var run_sound = new Audio("../sounds/run.mp3");
+          var victory_song = new Audio("../sounds/victory.mp3");
+          
+          function play_song(){
+            if(song_started == true){
+              return;
+            }
+          song.play();
+          song_started = true;
+          }         
+          
+          function hide_menu(){
+            menu_div.style.display = "none";
+          }
+          function show_menu(){
+            if(hero_hp == 0 || enemy_hp == 0){
+              return;
+            }
+            menu_div.style.display = "";
+          }
+          function hide_message(){
+            message_div.style.display = "none";
+          }      
+          function go_to_lost_page(){
+            window.location.href = "ending_lost1.html";
+          }
+          function hero_loses(){
+            show_hero_dead();
+            message_div.innerHTML = "You lose...";
+            message_div.style.display = "none"
+            setTimeout(go_to_lost_page,2000);
+          }
+          function go_to_won_page(){
+            window.location.href = "kita_urawa4.html"; 
+          }
+          function hero_wins(){
+            message_div.innerHTML = "You win!";
+            message_div.style.display = "";
+            song.pause();
+            victory_song.play();
+            setTimeout(go_to_won_page, 10000);
+          }
+          function show_slash(){
+            slash_img.style.display = "";        
+          }
+          function hero_return(){
+            slash_img.style.display = "none"
+            hero_img.style.left = "50px"
+            hero_img.style.opacity = 1;
+          }
+          function hero_get_hit(){
+            var damage = Math.round(20*Math.random()) - 1;
+            hero_hp -= damage;
+            if(hero_hp < 0){
+              hero_hp = 0;
+            }
+            update_hero_hp();
+            hero_img.style.left = "0";
+            hero_img.style.opacity = .5;
+            if(hero_hp > 0){
+              setTimeout(hero_return, 200);
+            }
+            else{
+              setTimeout(hero_loses, 700);
+            }
+          }
+          function enemy_get_hit(){
+            var damage = Math.round(30*Math.random());
+            if(Math.random() > .8){
+              damage = damage * 2;
+            }
+            enemy_hp -= damage;
+            if(enemy_hp < 0){
+              enemy_hp = 0;
+            }
+            update_enemy_hp();
+            enemy_img.style.left = "750px"; 
+            enemy_img.style.opacity = .5
+            if(enemy_hp > 0){
+              setTimeout(enemy_return, 200);
+            }
+            else{
+              show_enemy_dead();
+              setTimeout(hero_wins, 700);
+            }
+          }
+          
+          function hero_attack(){
+            if(hero_hp == 0){
+              return;
+            }
+            hero_img.style.left = "550px";
+            setTimeout(show_slash, 150);
+            setTimeout(play_hero_attack_sound, 160);
+            setTimeout(enemy_get_hit, 300)
+            setTimeout(hero_return, 450);
+          }
+          
+          function show_hero_dead(){
+            hero_img.style.display = "none";
+            hero_dead_img.style.display = "";
+          }
+          
+          function show_hit(){
+            hit_img.style.display = "";        
+          }
+          function enemy_attack(){
+            if(enemy_hp == 0){
+              return;
+            }
+            enemy_img.style.left = "170px";
+            setTimeout(show_hit, 150);
+            setTimeout(play_enemy_attack_sound, 150);
+            setTimeout(hero_get_hit, 300);
+            setTimeout(enemy_return, 450);
+          }
+          function enemy_return(){
+            hit_img.style.display = "none"
+            enemy_img.style.left = "720px"
+            enemy_img.style.opacity = 1
+          }
+          function show_enemy_dead(){
+            enemy_img.style.display = "none";
+            enemy_dead_img.style.display = "";
+          }
+          
+          function update_hero_hp(){
+            hero_hp_div.innerHTML = hero_hp + "/" + hero_hp_max;
+          }
+          function update_enemy_hp(){
+            enemy_hp_div.innerHTML = enemy_hp + "/" + enemy_hp_max;
+          } 
+          
+          function enemy_attack_first(){
+            if(fighting == true){
+              setTimeout(enemy_attack_first, 2000);
+              return;          
+            }
+            if(Math.random() > .8){
+              hide_menu();
+              enemy_attack();
+              setTimeout(show_menu, 1500);
+            }
+            setTimeout(enemy_attack_first, 2000);
+          }
+          function go_to_ran_page(){
+            window.location.href = "ending_ran1.html";
+          }
+          function run(){
+            fighting = "true";
+            if(Math.random() > .5){
+              hero_img.style.display = "none";
+              run_sound.play();
+              setTimeout(go_to_ran_page, 1000);
+            }
+            else{
+              hide_menu();
+              message_div.innerHTML = "Couldn\'t run!";
+              message_div.style.display = "";
+              setTimeout(enemy_attack, 1000);
+              setTimeout(hide_message, 2000);
+              setTimeout(show_menu, 2000);
+              setTimeout(stop_fighting, 2000);
+            }
+          }
+          
+          function stop_fighting(){
+            fighting = false;
+          }
+          
+          function play_hero_attack_sound(){
+            hero_attack_sound.play();
+          }
+          function play_enemy_attack_sound(){
+            enemy_attack_sound.play();
+          }      
+                  
+          function fight(){
+            fighting = true;
+            hide_menu();
+            hero_attack();
+            setTimeout(enemy_attack, 1000);
+            setTimeout(show_menu, 2000);
+            setTimeout(stop_fighting, 2000);
+          }
+          update_hero_hp();
+          update_enemy_hp();    
+          setTimeout(enemy_attack_first, 2000);
+
+        </script>
+        
+        <!-- jQuery first, then Popper.js, then Bootstrap JS, then Font Awesome -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
+        
+    </body>
+</html>

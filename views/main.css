@@ -1,0 +1,185 @@
+@charset "UTF-8";
+
+body{
+  margin: 0;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+    color: white;
+}
+p, ul, li{
+  list-style: none;
+  color: white;
+  margin: 5px 0;
+} 
+li:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ID */
+#container{
+  position: absolute;
+  bottom: 100px;
+}
+#menu{
+  position: absolute;
+  left: 120px;
+  top: 450px;
+  width: 750px;
+  height: 130px;
+  background-color: rgba(0, 0, 100, .7);
+  border: 2px solid white;
+  border-radius: 10px;
+  color: white;
+  font-size: 22px;
+  padding: 15px 0 15px 40px;
+  font-family: sans-serif;
+}
+#message {
+  position: absolute;
+  left: 400px;
+  top: 150px;
+  width: 200px;
+  height: 100px;
+  background-color: rgba(0, 0, 100, .7);
+  border: 2px solid white;
+  border-radius: 10px;
+  color: white;
+  font-size: 22px;
+  padding: 5px;
+  font-family: sans-serif;    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#hero_hp_box{
+  position: absolute;
+  left: 100px;
+  top: 80px;
+  color: white;
+  font-size: 30px;
+  font-family: sans-serif;
+  background-color: rgba(0, 0, 100, .7);
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+#enemy_hp_box{
+  position: absolute;
+  left: 750px;
+  top: 80px;
+  color: white;
+  font-size: 30px;
+  font-family: sans-serif;
+  background-color: rgba(0, 0, 100, .7);
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+/* ID for Objects */
+#hero{
+  position:absolute;
+  left: 50px;
+  top: 130px;
+}
+#hero_dead{
+  position:absolute;
+  left: 50px;
+  top: 250px;
+}
+
+#enemy{
+  position:absolute;
+  left: 720px;
+  top: 200px;
+}
+#enemy_dead{
+  position:absolute;
+  left: 720px;
+  top: 250px;
+}
+#hit{
+  position: absolute;
+  left: 60px;
+  top: 190px;
+  width: 200px;
+}
+#slash{
+  position: absolute;
+  left: 700px;
+  top: 190px;
+  width: 200px;
+}
+
+#ring, #ring1, #ring2, #ring3, #ring4 {
+  position: absolute;
+  left: 430px;
+  top: 50px;
+  width: 200px;  
+}
+
+#congrats{
+  margin: 0 0 0 200px;
+}
+
+/* CLASS */
+.background{
+  position: relative;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: rgba(194,252,255,.6);
+  width: 1000px;
+  height: 563px;
+  display: table;
+  margin: auto;
+}
+
+.index_body {
+  background-image: url("../images/bg/index.png");
+  background-size: contain;
+}
+.tutorial_body {
+  background-image: url("../images/bg/tutorial.png");
+  background-size: contain;
+}
+.kita_urawa_body{
+  background-image: url("../images/bg/kita_urawa.png");
+  background-size: contain;    
+}
+.yono_body{
+  background-image: url("../images/bg/yono.jpg");
+  background-size: contain;      
+}
+.omiya_body{
+  background-image: url("../images/bg/omiya.jpg");
+  background-size: contain;      
+}
+.omiya_poisoned_body{
+  background-image: url("../images/bg/omiya_poisoned.jpg");
+  background-size: contain;      
+}
+
+.ending_ran_body{
+  background-image: url("../images/bg/ending_ran.jpg");
+  background-size: contain;      
+}
+.ending_lost_body{
+  background-image: url("../images/bg/ending_lost.jpg");
+  background-size: contain;      
+}
+.ending_lost_virus_body{
+  background-image: url("../images/bg/ending_lost_virus.jpg");
+  background-size: contain;      
+}
+.ending_happy.html_body{
+  background-image: url("../images/bg/ending_happy.jpg");
+  background-size: contain;      
+}
